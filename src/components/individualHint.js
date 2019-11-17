@@ -48,7 +48,6 @@ class IndividualHint extends React.Component {
 
     onSubmit = (evt) => {
         evt.preventDefault();
-        const { selectedText } = this.props;
 
         // const guess = this.input.current.value;
         const guess = this.state.guess
@@ -63,7 +62,6 @@ class IndividualHint extends React.Component {
         this.setState({
             validation
         })
-        console.log('this would be a function from the hint.js ', this.props.type, this.props.selectedText)
     }
 
     render() {

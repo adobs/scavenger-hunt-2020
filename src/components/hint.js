@@ -1,11 +1,15 @@
 import React from 'react';
 import IndividualHint from './individualHint';
+import Modal from './modal'
 
-function Hint ({ selectedText }) {
+function Hint ({ selectedText, onClose }) {
 
     return (
-         <div>
-            <h2>{`Hint for ${selectedText}`}</h2>
+        <Modal
+            onClose={onClose}
+            show={true}
+        >
+            <h2>{`Hint for #${selectedText}`}</h2>
             <form>
                 <IndividualHint
                     selectedText={selectedText}
@@ -16,7 +20,7 @@ function Hint ({ selectedText }) {
                     question="After you've done the action, what does the hint translate to?"
                     type='translate' />
             </form>
-        </div>
+        </Modal>
     );
 }
 
