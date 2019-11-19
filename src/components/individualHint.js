@@ -21,8 +21,6 @@ class IndividualHint extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.selectedText !== this.props.selectedText) {
-            console.log('prevProps ', prevProps.selectedText)
-            console.log('this.props ', this.props.selectedText)
             this.setState({
                 validation: '',
                 guess: ''
@@ -35,7 +33,7 @@ class IndividualHint extends React.Component {
         const guess = evt.target.value
         // const guess = this.input.current.value;
         const { selectedText } = this.props;
-        console.log('guess ', guess, 'selectedText ', selectedText)
+
         if (!guess) {
             this.setState({
                 validation:  ''

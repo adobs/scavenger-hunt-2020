@@ -1,0 +1,11 @@
+.Li {
+    list-style-type: none;
+    padding: 0 20px;
+}
+
+.Menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+}

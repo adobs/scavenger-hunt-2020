@@ -5,8 +5,8 @@ const text = {
     1: 'Reach out to your elf',
     2: 'DEF',
     3: 'ghi',
-    4: 'Talk to Babe ghetto-amperstand'
-}
+    4: 'Talk to Babe ghetto-amperstand',
+};
 
 function encryptedText ({ selectedText }) {
     return (

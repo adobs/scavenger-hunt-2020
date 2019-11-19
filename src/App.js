@@ -1,7 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Enigma from './components/enigma';
+import Enigma from './components/Enigma';
 
 function App() {
   return (

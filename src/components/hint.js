@@ -1,6 +1,6 @@
 import React from 'react';
-import IndividualHint from './individualHint';
-import Modal from './modal'
+import IndividualHint from './IndividualHint';
+import Modal from './Modal'
 
 function Hint ({ selectedText, onClose }) {
 
