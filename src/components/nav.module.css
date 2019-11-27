@@ -1,0 +1,11 @@
+.Link {
+    color: grey;
+    text-decoration: none;
+}
+
+.Nav {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 50px;
+    padding-bottom: 40px;
+}

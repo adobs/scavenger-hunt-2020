@@ -2,15 +2,16 @@
 // organize code better
 // rename encryptedText
 // utils for the actual text
-// backend logic that uses render props
-// creacteContext for something to pass props through
+// propTypes
 
 import React from 'react';
 import EncryptedText from './EncryptedText';
 import Menu from './Menu';
 import Hint from './Hint';
 import { FaSmileWink } from 'react-icons/fa';
-import classes from './enigma.module.css';
+import styles from './enigma.module.css';
+import SelectedTextContext from './SelectedTextContext'
+import { Link } from 'react-router-dom';
 
 class Enigma extends React.Component {
     constructor(props) {
@@ -29,30 +30,41 @@ class Enigma extends React.Component {
     }
 
     openEnigmaLink = () => {
-        window.open('https://pypi.org/project/py-enigma/');
+        window.open('https://py-enigma.readthedocs.io/en/latest/guide.html#encrypting-decrypting');
     }
 
     render() {
         return(
             <React.Fragment>
-                <h1 className={classes.SorenBtn} onClick={this.openEnigmaLink}>Soren's Scavenger Hunt 2020</h1>
-                <Menu onClickHandler={this.menuClickHandler}/>
-                <EncryptedText selectedText={this.state.selectedText} />
-                {this.state.selectedText !== 0 &&
-                    <button
-                        onClick={() => this.setState({
-                            showHint: true
-                        })}
-                    >
-                    <FaSmileWink size={44} />
-                </button>
-                }
-                {this.state.showHint &&
-                    <Hint
-                        onClose={() => this.setState({showHint: false})}
-                        selectedText={this.state.selectedText}
-                    />
-                }
+                <SelectedTextContext.Provider value={this.state.selectedText}>
+                    <h1 className={styles.SorenBtn} onClick={this.openEnigmaLink}>
+                        <Link
+                            className={styles.SorenLink}
+                            to='/key_sheet.txt'
+                            download
+                            target="_blank"
+                        >
+                            Soren's Scavenger Hunt 2020
+                        </Link>
+                    </h1>
+                    <Menu onClickHandler={this.menuClickHandler}/>
+                    <EncryptedText selectedText={this.state.selectedText} />
+                    {this.state.selectedText !== 0 &&
+                        <button
+                            onClick={() => this.setState({
+                                showHint: true
+                            })}
+                            className={styles.HintBtn}
+                        >
+                        <FaSmileWink size={30} />
+                    </button>
+                    }
+                    {this.state.showHint &&
+                        <Hint
+                            onClose={() => this.setState({showHint: false})}
+                        />
+                    }
+                </SelectedTextContext.Provider>
             </React.Fragment>
         )
     }

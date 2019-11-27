@@ -1,11 +1,18 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Enigma from './components/Enigma';
+import Nav from './components/Nav';
+import Solved from './components/Solved';
+import './App.css';
 
 function App() {
   return (
     <div className="App">
-        <Enigma />
+        <Router>
+            <Nav />
+            <Route exact path='/' component={Enigma} />
+            <Route path='/solved' component={Solved} />
+        </Router>
     </div>
   );
 }

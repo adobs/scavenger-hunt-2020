@@ -1,3 +1,13 @@
 .SorenBtn {
     font-family: "Courier New", Courier, "Lucida Sans Typewriter";
 }
+
+.SorenLink {
+    text-decoration: none;
+    color: black;
+    font-size: 50px;
+}
+
+.HintBtn {
+    border: none;
+}

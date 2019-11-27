@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import axios from './axios-requests';
 
 class IndividualHint extends React.Component {
     constructor(props) {
@@ -6,7 +8,7 @@ class IndividualHint extends React.Component {
 
         this.state =  {
             validation: '',
-            guess: ''
+            guess: '',
         }
 
         this.input = React.createRef();
@@ -14,61 +16,72 @@ class IndividualHint extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.type === 'who') {
+        const { type } = this.props;
+        if (type === 'who' || type === 'solved') {
             this.input.current.focus();
-        }
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.selectedText !== this.props.selectedText) {
-            this.setState({
-                validation: '',
-                guess: ''
-            })
         }
     }
 
 
     onInputChange = (evt) => {
-        const guess = evt.target.value
-        // const guess = this.input.current.value;
-        const { selectedText } = this.props;
+        const guess = evt.target.value;
 
-        if (!guess) {
-            this.setState({
-                validation:  ''
-            })
-        }
         this.setState({
             guess,
+            validation: ''
         });
     }
 
     onSubmit = (evt) => {
         evt.preventDefault();
 
-        // const guess = this.input.current.value;
-        const guess = this.state.guess
-        // make this be a call to the backend? using the hint and the guess
-        let validation = 'That is incorrect';
-        if (guess === 'Arwen') {
-            this.setState({
-                validation: 'Correct',
-            })
-        }
+        const { guess } = this.state;
 
-        this.setState({
-            validation
+        const hint = {
+            num: this.props.selectedText,
+            guess: guess.toLowerCase(),
+            type: this.props.type,
+        };
+        fetch('https://scavenger-hunt-api.herokuapp.com/hint', {
+            method: 'POST',
+            body: JSON.stringify(hint),
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': true,
+                'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'application/json',
+                'Access-Control-Request-Method': 'POST',
+                'Access-Control-Request-Headers': 'Content-Type'
+            },
+            redirect: 'follow',
+         })
+        // axios.post('/hint', hint, {
+        //     headers: {
+        //         'Access-Control-Allow-Origin': '*',
+        // 	},
+        // 	proxy: {
+        //         host: 'https://scavenger-hunt.api.herokuapp.com'
+        // 	}
+    	// })
+        .then(resp => resp.json())
+        .then(data => {
+            const { validation } = data;
+            this.setState({
+                validation
+            })
         })
+        .catch(err => console.log('err ', err));
     }
 
     render() {
         return (
             <React.Fragment>
-                <label htmlFor='who'>{this.props.question}</label>
+                <label>{this.props.question}</label>
                 <div>
                     <input
-                        name='who'
                         ref={this.input}
                         onChange={this.onInputChange}
                         type='text'
@@ -86,6 +99,12 @@ class IndividualHint extends React.Component {
             </React.Fragment>
         )
     }
+}
+
+IndividualHint.propTypes = {
+    selectedText: PropTypes.number.isRequired,
+    question: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired
 }
 
 export default IndividualHint;
