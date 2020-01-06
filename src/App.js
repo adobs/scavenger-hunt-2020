@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Enigma from './components/Enigma';
 import Nav from './components/Nav';
+import Enigma from './components/Enigma';
 import Solved from './components/Solved';
 import './App.css';
 
