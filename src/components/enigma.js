@@ -3,6 +3,9 @@
 // rename encryptedText
 // utils for the actual text
 // propTypes
+// query string
+// 404 page?
+
 
 import React from 'react';
 import EncryptedText from './EncryptedText';
@@ -23,14 +26,14 @@ class Enigma extends React.Component {
         }
     }
 
-    menuClickHandler = (menuNum) => {
+    menuClickHandler = (menuNum, evt) => {
         this.setState({
             selectedText: menuNum
         });
     }
 
     openEnigmaLink = () => {
-        window.open('https://py-enigma.readthedocs.io/en/latest/guide.html#encrypting-decrypting');
+        window.open('https://py-enigma.readthedocs.io/en/latest/guide.html');
     }
 
     render() {
@@ -47,7 +50,7 @@ class Enigma extends React.Component {
                             Soren's Scavenger Hunt 2020
                         </Link>
                     </h1>
-                    <Menu onClickHandler={this.menuClickHandler}/>
+                    <Menu onClickHandler={this.menuClickHandler} selectedText={this.state.selectedText}/>
                     <EncryptedText selectedText={this.state.selectedText} />
                     {this.state.selectedText !== 0 &&
                         <button

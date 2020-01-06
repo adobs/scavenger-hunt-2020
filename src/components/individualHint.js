@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from './axios-requests';
 
 class IndividualHint extends React.Component {
     constructor(props) {
@@ -58,14 +57,6 @@ class IndividualHint extends React.Component {
             },
             redirect: 'follow',
          })
-        // axios.post('/hint', hint, {
-        //     headers: {
-        //         'Access-Control-Allow-Origin': '*',
-        // 	},
-        // 	proxy: {
-        //         host: 'https://scavenger-hunt.api.herokuapp.com'
-        // 	}
-    	// })
         .then(resp => resp.json())
         .then(data => {
             const { validation } = data;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './menu.module.css';
 import Tooltip from './Tooltip'
 
-function Menu({ onClickHandler }) {
+function Menu({ onClickHandler, selectedText }) {
     // Array of 10 values (0 to 9)
     const numbers = [...Array(10).keys()]
     const numbersMenu = numbers.map((number) => {
@@ -11,7 +11,10 @@ function Menu({ onClickHandler }) {
         return (
             <li className={styles.Li} key={number}>
                 <Tooltip text={`Day ${prettyNumber}`}>
-                    <button onClick={() => onClickHandler(prettyNumber)}>
+                    <button
+                        className={selectedText === prettyNumber ? styles.Highlight : null}
+                        onClick={(evt) => onClickHandler(prettyNumber, evt)}
+                    >
                         {prettyNumber}
                     </button>
                 </Tooltip>

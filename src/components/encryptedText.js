@@ -18,7 +18,9 @@ const text = {
 function encryptedText ({ selectedText }) {
     return (
         <div>
-            <p className={styles.EncryptedText}>{text[selectedText]}</p>
+            <p className={styles.EncryptedText}>
+                {text[selectedText]}
+            </p>
         </div>
     )
 }
