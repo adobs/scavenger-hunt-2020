@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "eb1a49257c2b47b770d8ed8380be9165",
+    "revision": "a74ce16c2014c90199d078894e5dbafb",
     "url": "/scavenger-hunt-2020/index.html"
   },
   {
-    "revision": "c384305605a73876882f",
+    "revision": "38f56b64a841626c0878",
     "url": "/scavenger-hunt-2020/static/css/main.0fb23da4.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/scavenger-hunt-2020/static/js/2.5ced722f.chunk.js.LICENSE"
   },
   {
-    "revision": "c384305605a73876882f",
-    "url": "/scavenger-hunt-2020/static/js/main.b917e60c.chunk.js"
+    "revision": "38f56b64a841626c0878",
+    "url": "/scavenger-hunt-2020/static/js/main.53eec644.chunk.js"
   },
   {
     "revision": "7bbc576e2e4dd3037c66",

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/scavenger-hunt-2020/precache-manifest.897efb8ee28351af75d3f0ecc459194d.js"
+  "/scavenger-hunt-2020/precache-manifest.a18688bf51288502bdeb4cb74800763b.js"
 );
 
 self.addEventListener('message', (event) => {
