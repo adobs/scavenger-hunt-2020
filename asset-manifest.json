@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/scavenger-hunt-2020/static/css/main.0fb23da4.chunk.css",
-    "main.js": "/scavenger-hunt-2020/static/js/main.f5539034.chunk.js",
-    "main.js.map": "/scavenger-hunt-2020/static/js/main.f5539034.chunk.js.map",
+    "main.js": "/scavenger-hunt-2020/static/js/main.05f6c173.chunk.js",
+    "main.js.map": "/scavenger-hunt-2020/static/js/main.05f6c173.chunk.js.map",
     "runtime-main.js": "/scavenger-hunt-2020/static/js/runtime-main.4b296607.js",
     "runtime-main.js.map": "/scavenger-hunt-2020/static/js/runtime-main.4b296607.js.map",
     "static/js/2.6c42c317.chunk.js": "/scavenger-hunt-2020/static/js/2.6c42c317.chunk.js",
     "static/js/2.6c42c317.chunk.js.map": "/scavenger-hunt-2020/static/js/2.6c42c317.chunk.js.map",
     "index.html": "/scavenger-hunt-2020/index.html",
-    "precache-manifest.b9c23cbe89696a730b4a79d7a7b8cacc.js": "/scavenger-hunt-2020/precache-manifest.b9c23cbe89696a730b4a79d7a7b8cacc.js",
+    "precache-manifest.e89736e821995dd5a41e11979a465c93.js": "/scavenger-hunt-2020/precache-manifest.e89736e821995dd5a41e11979a465c93.js",
     "service-worker.js": "/scavenger-hunt-2020/service-worker.js",
     "static/css/main.0fb23da4.chunk.css.map": "/scavenger-hunt-2020/static/css/main.0fb23da4.chunk.css.map",
     "static/js/2.6c42c317.chunk.js.LICENSE": "/scavenger-hunt-2020/static/js/2.6c42c317.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.4b296607.js",
     "static/js/2.6c42c317.chunk.js",
     "static/css/main.0fb23da4.chunk.css",
-    "static/js/main.f5539034.chunk.js"
+    "static/js/main.05f6c173.chunk.js"
   ]
 }
