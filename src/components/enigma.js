@@ -14,7 +14,6 @@ import Hint from './Hint';
 import { FaSmileWink } from 'react-icons/fa';
 import styles from './enigma.module.css';
 import SelectedTextContext from './SelectedTextContext'
-import { Link } from 'react-router-dom';
 
 class Enigma extends React.Component {
     constructor(props) {
@@ -41,14 +40,14 @@ class Enigma extends React.Component {
             <React.Fragment>
                 <SelectedTextContext.Provider value={this.state.selectedText}>
                     <h1 className={styles.SorenBtn} onClick={this.openEnigmaLink}>
-                        <Link
+                        <a
                             className={styles.SorenLink}
-                            to='/key_sheet.txt'
+                            href='https://adobs.github.io/scavenger-hunt-2020/key_sheet.txt'
                             download
                             target="_blank"
                         >
                             Soren's Scavenger Hunt 2020
-                        </Link>
+                        </a>
                     </h1>
                     <Menu onClickHandler={this.menuClickHandler} selectedText={this.state.selectedText}/>
                     <EncryptedText selectedText={this.state.selectedText} />
