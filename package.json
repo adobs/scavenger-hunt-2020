@@ -1,4 +1,5 @@
 {
+  "homepage": "http://adobs.github.io/scavenger-hunt-2020/",
   "name": "enigma",
   "version": "0.1.0",
   "private": true,
@@ -20,7 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,6 +42,7 @@
   },
   "devDependencies": {
     "axios": "^0.19.0",
+    "gh-pages": "^2.2.0",
     "webpack-cli": "^3.3.10"
   }
 }
