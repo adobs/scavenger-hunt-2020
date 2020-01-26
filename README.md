@@ -1,4 +1,4 @@
-This is a side project I built as part of a fun thing I like to do: build tech-based scavenger hunts for my partner.  See if you can decode the messages, but you probably won't be able to get to the end as the hints decoded are based on references only my partner would know.
+This is a side project I built as part of a fun thing I like to do: build tech-based scavenger hunts for my partner.  See if you can find hidden hints on the site and decode the messages (but you probably won't be able to get to the end as the hints are resolved based on references only my partner would know).
 
 ## Tech Stack
 - React
