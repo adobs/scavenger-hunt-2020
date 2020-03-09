@@ -1,5 +1,5 @@
 import React from 'react';
-import IndividualHint from './IndividualHint'
+import IndividualHint from './individualHint'
 
 function solved () {
     return (
