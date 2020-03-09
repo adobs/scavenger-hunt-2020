@@ -44,6 +44,7 @@ class Enigma extends React.Component {
                             className={styles.SorenLink}
                             href='https://adobs.github.io/scavenger-hunt-2020/key_sheet.txt'
                             download
+                            // eslint-disable-next-line 
                             target="_blank"
                         >
                             Soren's Scavenger Hunt 2020
