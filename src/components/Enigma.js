@@ -51,10 +51,10 @@ function Enigma() {
                 <h1 className={styles.SorenBtn} onClick={openEnigmaLink}>
                     <a
                         className={styles.SorenLink}
-                        href='https://adobs.github.io/scavenger-hunt-2020/key_sheet.txt'
                         download
-                        // eslint-disable-next-line
+                        // eslint-disable-next-line react/jsx-no-target-blank
                         target="_blank"
+                        href='/key_sheet.txt'
                     >
                         Soren's Scavenger Hunt 2020
                     </a>
