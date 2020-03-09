@@ -5,22 +5,22 @@ import styles from './modal.module.css';
 
 function Modal (props) {
     // Render nothing if the "show" prop is false
-    if(!this.props.show) {
+    if(!props.show) {
         return null;
+    }
     return (
         <div className={styles.Backdrop}>
             <div className={styles.Modal}>
                 <button
                     className={styles.Close}
-                    onClick={this.props.onClose}
+                    onClick={props.onClose}
                 >
                     <FaTimes size={22} />
                 </button>
-                {this.props.children}
+                {props.children}
             </div>
       </div>
     );
-  }
 }
 
 Modal.propTypes = {

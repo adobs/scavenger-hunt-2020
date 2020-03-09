@@ -17,6 +17,10 @@ function IndividualHint (props) {
         const guess = evt.target.value;
         setGuess(guess);
         setValidation('');
+
+        if (evt.keyCode === 13 || evt.which === 13) {
+            onSubmit(evt);
+        }
     }
 
     const onSubmit = (evt) => {
