@@ -25,6 +25,27 @@ class Enigma extends React.Component {
         }
     }
 
+    componentDidMount() {
+        // deployed on heroku -- waking up dynos before actually
+        // hitting API in IndividualHint.js to speed up first response
+        fetch('https://scavenger-hunt-api.herokuapp.com/hint', {
+            method: 'POST',
+            body: JSON.stringify(hint),
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': true,
+                'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'application/json',
+                'Access-Control-Request-Method': 'POST',
+                'Access-Control-Request-Headers': 'Content-Type'
+            },
+            redirect: 'follow',
+         })
+     }
+
     menuClickHandler = (menuNum, evt) => {
         this.setState({
             selectedText: menuNum
@@ -44,7 +65,7 @@ class Enigma extends React.Component {
                             className={styles.SorenLink}
                             href='https://adobs.github.io/scavenger-hunt-2020/key_sheet.txt'
                             download
-                            // eslint-disable-next-line 
+                            // eslint-disable-next-line
                             target="_blank"
                         >
                             Soren's Scavenger Hunt 2020
