@@ -1,7 +1,7 @@
 import React from 'react';
 import IndividualHint from './IndividualHint'
 
-function solved () {
+function Solved () {
     return (
         <div>
             <p>So, you've solved the puzzle?</p>
@@ -13,4 +13,4 @@ function solved () {
     )
 }
 
-export default solved;
+export default Solved;

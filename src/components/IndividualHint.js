@@ -1,45 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-class IndividualHint extends React.Component {
-    constructor(props) {
-        super(props)
+function IndividualHint (props) {
+    const [validation, setValidation] = useState('');
+    const [guess, setGuess] = useState('');
+    const input = React.createRef();
 
-        this.state =  {
-            validation: '',
-            guess: '',
-        }
-
-        this.input = React.createRef();
-
-    }
-
-    componentDidMount() {
-        const { type } = this.props;
+    useEffect(() => {
+        const { type } = props;
         if (type === 'who' || type === 'solved') {
-            this.input.current.focus();
+            input.current.focus();
         }
-    }
+    });
 
-
-    onInputChange = (evt) => {
+    const onInputChange = (evt) => {
         const guess = evt.target.value;
-
-        this.setState({
-            guess,
-            validation: ''
-        });
+        setGuess(guess);
+        setValidation('');
     }
 
-    onSubmit = (evt) => {
+    const onSubmit = (evt) => {
         evt.preventDefault();
 
-        const { guess } = this.state;
-
         const hint = {
-            num: this.props.selectedText,
+            num: props.selectedText,
             guess: guess.toLowerCase(),
-            type: this.props.type,
+            type: props.type,
         };
         fetch('https://scavenger-hunt-api.herokuapp.com/hint', {
             method: 'POST',
@@ -60,36 +46,32 @@ class IndividualHint extends React.Component {
         .then(resp => resp.json())
         .then(data => {
             const { validation } = data;
-            this.setState({
-                validation
-            })
+            setValidation(validation);
         })
         .catch(err => console.log('err ', err));
     }
 
-    render() {
-        return (
-            <React.Fragment>
-                <label>{this.props.question}</label>
-                <div>
-                    <input
-                        ref={this.input}
-                        onChange={this.onInputChange}
-                        type='text'
-                        value={this.state.guess}
-                        />
-                    <button
-                        type='submit'
-                        disabled={this.state.guess ? false : true}
-                        onClick={this.onSubmit}
-                    >
-                        Submit
-                    </button>
-                </div>
-                {this.state.validation && <p>{this.state.validation}</p>}
-            </React.Fragment>
-        )
-    }
+    return (
+        <React.Fragment>
+            <label>{props.question}</label>
+            <div>
+                <input
+                    ref={input}
+                    onChange={onInputChange}
+                    type='text'
+                    value={guess}
+                    />
+                <button
+                    type='submit'
+                    disabled={guess ? false : true}
+                    onClick={onSubmit}
+                >
+                    Submit
+                </button>
+            </div>
+            {validation && <p>{validation}</p>}
+        </React.Fragment>
+    )
 }
 
 IndividualHint.propTypes = {

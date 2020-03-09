@@ -1,13 +1,9 @@
 // TOOD
-// organize code better
-// rename encryptedText
-// utils for the actual text
-// propTypes
 // query string
 // 404 page?
+// enter in IndividualHint submits
 
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import EncryptedText from './EncryptedText';
 import Menu from './Menu';
 import Hint from './Hint';
@@ -15,22 +11,16 @@ import { FaSmileWink } from 'react-icons/fa';
 import styles from './enigma.module.css';
 import SelectedTextContext from './SelectedTextContext'
 
-class Enigma extends React.Component {
-    constructor(props) {
-        super(props)
+function Enigma() {
+    const [selectedText, setSelectedText] = useState(1);
+    const [showHint, setShowHint] = useState(false);
 
-        this.state = {
-            selectedText: 1,
-            showHint: false
-        }
-    }
-
-    componentDidMount() {
+    useEffect(() => {
         // deployed on heroku -- waking up dynos before actually
         // hitting API in IndividualHint.js to speed up first response
         fetch('https://scavenger-hunt-api.herokuapp.com/hint', {
             method: 'POST',
-            body: JSON.stringify(hint),
+            body: '',
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
@@ -44,54 +34,49 @@ class Enigma extends React.Component {
             },
             redirect: 'follow',
          })
-     }
+     });
 
-    menuClickHandler = (menuNum, evt) => {
-        this.setState({
-            selectedText: menuNum
-        });
+
+    const menuClickHandler = (menuNum, evt) => {
+        setSelectedText(menuNum);
     }
 
-    openEnigmaLink = () => {
+    const openEnigmaLink = () => {
         window.open('https://py-enigma.readthedocs.io/en/latest/guide.html');
     }
 
-    render() {
-        return(
-            <React.Fragment>
-                <SelectedTextContext.Provider value={this.state.selectedText}>
-                    <h1 className={styles.SorenBtn} onClick={this.openEnigmaLink}>
-                        <a
-                            className={styles.SorenLink}
-                            href='https://adobs.github.io/scavenger-hunt-2020/key_sheet.txt'
-                            download
-                            // eslint-disable-next-line
-                            target="_blank"
-                        >
-                            Soren's Scavenger Hunt 2020
-                        </a>
-                    </h1>
-                    <Menu onClickHandler={this.menuClickHandler} selectedText={this.state.selectedText}/>
-                    <EncryptedText selectedText={this.state.selectedText} />
-                    {this.state.selectedText !== 0 &&
-                        <button
-                            onClick={() => this.setState({
-                                showHint: true
-                            })}
-                            className={styles.HintBtn}
-                        >
-                        <FaSmileWink size={30} />
-                    </button>
-                    }
-                    {this.state.showHint &&
-                        <Hint
-                            onClose={() => this.setState({showHint: false})}
-                        />
-                    }
-                </SelectedTextContext.Provider>
-            </React.Fragment>
-        )
-    }
+    return (
+        <React.Fragment>
+            <SelectedTextContext.Provider value={selectedText}>
+                <h1 className={styles.SorenBtn} onClick={openEnigmaLink}>
+                    <a
+                        className={styles.SorenLink}
+                        href='https://adobs.github.io/scavenger-hunt-2020/key_sheet.txt'
+                        download
+                        // eslint-disable-next-line
+                        target="_blank"
+                    >
+                        Soren's Scavenger Hunt 2020
+                    </a>
+                </h1>
+                <Menu onClickHandler={menuClickHandler} selectedText={selectedText}/>
+                <EncryptedText selectedText={selectedText} />
+                {selectedText !== 0 &&
+                    <button
+                        onClick={() => setShowHint(true)}
+                        className={styles.HintBtn}
+                    >
+                    <FaSmileWink size={30} />
+                </button>
+                }
+                {showHint &&
+                    <Hint
+                        onClose={() => setShowHint(false)}
+                    />
+                }
+            </SelectedTextContext.Provider>
+        </React.Fragment>
+    )
 }
 
 export default Enigma;
