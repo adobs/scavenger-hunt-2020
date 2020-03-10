@@ -9,74 +9,66 @@ import Menu from './Menu';
 import Hint from './Hint';
 import { FaSmileWink } from 'react-icons/fa';
 import styles from './enigma.module.css';
-import SelectedTextContext from './SelectedTextContext'
+import SelectedTextContext from './SelectedTextContext';
 
 function Enigma() {
-    const [selectedText, setSelectedText] = useState(1);
-    const [showHint, setShowHint] = useState(false);
+  const [selectedText, setSelectedText] = useState(1);
+  const [showHint, setShowHint] = useState(false);
 
-    useEffect(() => {
-        // deployed on heroku -- waking up dynos before actually
-        // hitting API in IndividualHint.js to speed up first response
-        fetch('https://scavenger-hunt-api.herokuapp.com/hint', {
-            method: 'POST',
-            body: '',
-            mode: 'cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': true,
-                'Access-Control-Allow-Methods': 'POST, OPTIONS',
-                'Access-Control-Allow-Headers': 'application/json',
-                'Access-Control-Request-Method': 'POST',
-                'Access-Control-Request-Headers': 'Content-Type'
-            },
-            redirect: 'follow',
-         })
-     });
+  useEffect(() => {
+    // deployed on heroku -- waking up dynos before actually
+    // hitting API in IndividualHint.js to speed up first response
+    fetch('https://scavenger-hunt-api.herokuapp.com/hint', {
+      method: 'POST',
+      body: '',
+      mode: 'cors',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'application/json',
+        'Access-Control-Request-Method': 'POST',
+        'Access-Control-Request-Headers': 'Content-Type'
+      },
+      redirect: 'follow'
+    });
+  });
 
+  const menuClickHandler = (menuNum, evt) => {
+    setSelectedText(menuNum);
+  };
 
-    const menuClickHandler = (menuNum, evt) => {
-        setSelectedText(menuNum);
-    }
+  const openEnigmaLink = () => {
+    window.open('https://py-enigma.readthedocs.io/en/latest/guide.html');
+  };
 
-    const openEnigmaLink = () => {
-        window.open('https://py-enigma.readthedocs.io/en/latest/guide.html');
-    }
-
-    return (
-        <React.Fragment>
-            <SelectedTextContext.Provider value={selectedText}>
-                <h1 className={styles.SorenBtn} onClick={openEnigmaLink}>
-                    <a
-                        className={styles.SorenLink}
-                        download
-                        // eslint-disable-next-line react/jsx-no-target-blank
-                        target="_blank"
-                        href='/key_sheet.txt'
-                    >
-                        Soren's Scavenger Hunt 2020
-                    </a>
-                </h1>
-                <Menu onClickHandler={menuClickHandler} selectedText={selectedText}/>
-                <EncryptedText selectedText={selectedText} />
-                {selectedText !== 0 &&
-                    <button
-                        onClick={() => setShowHint(true)}
-                        className={styles.HintBtn}
-                    >
-                    <FaSmileWink size={30} />
-                </button>
-                }
-                {showHint &&
-                    <Hint
-                        onClose={() => setShowHint(false)}
-                    />
-                }
-            </SelectedTextContext.Provider>
-        </React.Fragment>
-    )
+  return (
+    <React.Fragment>
+      <SelectedTextContext.Provider value={selectedText}>
+        <h1 className={styles.SorenBtn} onClick={openEnigmaLink}>
+          <a
+            className={styles.SorenLink}
+            download
+            // eslint-disable-next-line react/jsx-no-target-blank
+            target="_blank"
+            href="/key_sheet.txt"
+          >
+            Soren's Scavenger Hunt 2020
+          </a>
+        </h1>
+        <Menu onClickHandler={menuClickHandler} selectedText={selectedText} />
+        <EncryptedText selectedText={selectedText} />
+        {selectedText !== 0 && (
+          <button onClick={() => setShowHint(true)} className={styles.HintBtn}>
+            <FaSmileWink size={30} />
+          </button>
+        )}
+        {showHint && <Hint onClose={() => setShowHint(false)} />}
+      </SelectedTextContext.Provider>
+    </React.Fragment>
+  );
 }
 
 export default Enigma;
