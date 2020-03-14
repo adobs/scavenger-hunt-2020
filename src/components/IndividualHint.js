@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-function IndividualHint(props) {
+function IndividualHint({ type, selectedText, question }) {
   const [validation, setValidation] = useState('');
   const [guess, setGuess] = useState('');
   const input = React.createRef();
 
   useEffect(() => {
-    const { type } = props;
     if (type === 'who' || type === 'solved') {
       input.current.focus();
     }
@@ -27,9 +26,9 @@ function IndividualHint(props) {
     evt.preventDefault();
 
     const hint = {
-      num: props.selectedText,
+      num: selectedText,
       guess: guess.toLowerCase(),
-      type: props.type
+      type: type
     };
     fetch('https://scavenger-hunt-api.herokuapp.com/hint', {
       method: 'POST',
@@ -57,7 +56,7 @@ function IndividualHint(props) {
 
   return (
     <React.Fragment>
-      <label>{props.question}</label>
+      <label>{question}</label>
       <div>
         <input ref={input} onChange={onInputChange} type="text" value={guess} />
         <button type="submit" disabled={guess ? false : true} onClick={onSubmit}>
