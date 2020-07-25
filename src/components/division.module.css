@@ -1,0 +1,35 @@
+.Graphic {
+    max-width: 30%;
+    height: auto;
+}
+
+.Letter {
+    padding-right: 10px;
+    font-size: 20px;
+}
+
+.Input {
+    width: 15px;
+}
+
+.AnswerRow {
+    padding-bottom: 10px;
+}
+
+.AnswerColumn {
+    padding-right: 140px;
+}
+
+.Container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+}
+
+.FinalHint {
+    font-size: 50px;
+    margin-top: 30px;
+}

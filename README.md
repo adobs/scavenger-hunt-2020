@@ -3,7 +3,6 @@ This is a side project I built as part of a fun thing I like to do: build tech-b
 ## Tech Stack
 
 - React
-- GitHub pages (for deployment)
 - Python RESTFul API (not included in this repo)\*
 
 Of note, I build the Python API so that there would be no cheating when trying to solve the scavenger hunt! All answers are server side only! (And that repo is private, so no use trying to search for it!)\*

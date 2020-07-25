@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-function IndividualHint({ type, selectedText, question }) {
+function IndividualHint({ type, selectedText, question, showImg }) {
   const [validation, setValidation] = useState('');
   const [guess, setGuess] = useState('');
   const input = React.createRef();
@@ -16,10 +16,6 @@ function IndividualHint({ type, selectedText, question }) {
     const guess = evt.target.value;
     setGuess(guess);
     setValidation('');
-
-    if (evt.keyCode === 13 || evt.which === 13) {
-      onSubmit(evt);
-    }
   };
 
   const onSubmit = evt => {
@@ -50,6 +46,9 @@ function IndividualHint({ type, selectedText, question }) {
       .then(data => {
         const { validation } = data;
         setValidation(validation);
+        if (type === 'solved' && validation === 'Correct!') {
+          showImg();
+        }
       })
       .catch(err => console.log('err ', err));
   };
@@ -71,7 +70,8 @@ function IndividualHint({ type, selectedText, question }) {
 IndividualHint.propTypes = {
   selectedText: PropTypes.number.isRequired,
   question: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
+  showImg: PropTypes.func
 };
 
 export default IndividualHint;
